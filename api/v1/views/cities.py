@@ -51,9 +51,9 @@ def post_city(state_id):
     if state is None:
         abort(404)
     if request.get_json(silent=True) is None:
-        return make_response(jsonify({'error': 'Not a JSON'}), 400)
+        return (jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in request.get_json():
-        return make_response(jsonify({'error': 'Missing name'}), 400)
+        return (jsonify({'error': 'Missing name'}), 400)
     kwargs = request.get_json()
     kwargs['state_id'] = state_id
     city = City(**kwargs)
@@ -69,7 +69,7 @@ def put_city(city_id):
     if city is None:
         abort(404)
     if request.get_json(silent=True) is None:
-        return make_response(jsonify({'error': 'Not a JSON'}), 400)
+        return (jsonify({'error': 'Not a JSON'}), 400)
     for attr, val in request.get_json().items():
         if attr not in ['id', 'state_id', 'created_at', 'updated_at']:
             setattr(city, attr, val)
