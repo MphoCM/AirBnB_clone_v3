@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """cities.py"""
 
 from api.v1.views import app_views
